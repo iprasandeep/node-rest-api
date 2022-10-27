@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
+
+// handle incoming get requests to /orders
 router.get('/', (req, res, next) =>{
     res.status(200).json({
         message: 'orders were fetched!'
@@ -8,9 +10,14 @@ router.get('/', (req, res, next) =>{
 })
 
 router.post('/', (req, res, next) =>{
+    const order = {
+        productId: req.body.productId,
+        quantity: req.body.quantity
+    }
     res.status(201).json({
-        message: 'orders was created!'
-    })
+        message: 'orders was created!',
+        order: order
+    });
 })
 
 router.get('/:orderId', (req, res, next) =>{
